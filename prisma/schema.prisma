@@ -1,0 +1,4 @@
+model Keys {
+    id  Int    @id @default(autoincrement())
+    key String @unique
+}
