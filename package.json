@@ -6,9 +6,18 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/cors": "^1.0.2",
+    "@elysiajs/swagger": "^1.0.3",
+    "@prisma/client": "5.12.1",
+    "@wharfkit/session": "^1.2.8",
+    "@wharfkit/transact-plugin-autocorrect": "^1.1.1",
+    "@wharfkit/wallet-plugin-privatekey": "^1.1.0",
+    "atomicassets": "^1.5.1",
+    "elysia": "latest",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.6.4",
     "bun-types": "latest",
     "prisma": "^5.12.1"
   },

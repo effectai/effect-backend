@@ -27,7 +27,7 @@ services:
       - 8080:8080
 
   backend:
-    image: oven/bun:alpine
+    image: oven/bun:latest
     working_dir: /code
     command: bun dev
     volumes:
