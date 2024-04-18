@@ -1,6 +1,16 @@
 import { Session } from "@wharfkit/session";
 import { WalletPluginPrivateKey } from "@wharfkit/wallet-plugin-privatekey";
 
+const eos_mainnet = {
+	id: "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
+	url: "https://eos.greymass.com",
+};
+
+const jungle4 = {
+	id: "73e4385a2708e6d7048834fbc1079f2fabb17b3c125b146af438971e90716c4d",
+	url: "https://jungle4.cryptolions.io",
+};
+
 export const useSession = () => {
 	const privateKey = process.env.EOS_PRIVATE_KEY;
 	const actor = process.env.EOS_ACTOR;
@@ -22,10 +32,7 @@ export const useSession = () => {
 		{
 			actor,
 			permission,
-			chain: {
-				id: "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
-				url: "https://eos.greymass.com",
-			},
+			chain: jungle4,
 			walletPlugin: new WalletPluginPrivateKey(privateKey),
 		},
 		{

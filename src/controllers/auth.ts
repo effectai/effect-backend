@@ -1,6 +1,6 @@
 import { type Elysia, t } from "elysia";
 import { findKey } from "../services/keys";
-import { mintNft } from "../services/nft";
+import { mintNft } from "../services/atomic";
 
 export const authController = (app: Elysia) =>
 	app.post(
@@ -11,9 +11,9 @@ export const authController = (app: Elysia) =>
 
 			//step 2. mint NFT to the user
 			const result = await mintNft({
-				collectionName: "jefftestnft1",
-				schemaName: "test",
-				templateId: "11420",
+				collectionName: "jefftestcoll",
+				schemaName: "schema1",
+				templateId: "178",
 				mintTo: username,
 			});
 
