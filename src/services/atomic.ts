@@ -9,50 +9,46 @@ export type MintNftArgs = {
 	mintTo: NameType;
 };
 
-export const getTemplates = async () => {
+export const getTemplates = async (collectionName: string) => {
 	const rpc = new RpcApi("https://jungle4.cryptolions.io:443", "atomicassets");
-	const data = await rpc.getCollectionTemplates("jefftestcoll");
+	const data = await rpc.getCollectionTemplates(collectionName);
 	return data;
 };
 
-export const authorizeCreator = async () => {
+export const authorizeCreator = async (
+	collectionName: string,
+	creatorName: string,
+) => {
 	const { transact, authorization, actor } = useSession();
 
 	await transact({
 		action: {
 			account: "atomicassets",
 			name: "addcolauth",
-			authorization: [
-				{
-					actor: "eoseoseoseos",
-					permission: "active",
-				},
-			],
+			authorization,
 			data: {
-				collection_name: "jefftestcoll",
-				account_to_add: "eoseoseoseos",
+				collection_name: collectionName,
+				account_to_add: creatorName,
 			},
 		},
 	});
 };
 
-export const createTemplate = async () => {
-	const { transact, authorization, actor } = useSession();
+export const createTemplate = async (
+	collectionName: string,
+	schemaName: string,
+) => {
+	const { transact, authorization } = useSession();
 
 	await transact({
 		action: {
 			account: "atomicassets",
 			name: "createtempl",
-			authorization: [
-				{
-					actor: "eoseoseoseos",
-					permission: "active",
-				},
-			],
+			authorization,
 			data: {
 				authorized_creator: "eoseoseoseos",
-				collection_name: "jefftestcoll",
-				schema_name: "schema1",
+				collection_name: collectionName,
+				schema_name: schemaName,
 				transferable: false,
 				burnable: true,
 				max_supply: 0,
@@ -62,23 +58,21 @@ export const createTemplate = async () => {
 	});
 };
 
-export const createSchema = async () => {
-	const { transact, authorization, actor } = useSession();
+export const createSchema = async (
+	collectionName: string,
+	schemaName: string,
+) => {
+	const { transact, authorization } = useSession();
 
 	await transact({
 		action: {
 			account: "atomicassets",
 			name: "createschema",
-			authorization: [
-				{
-					actor: "eoseoseoseos",
-					permission: "active",
-				},
-			],
+			authorization,
 			data: {
 				authorized_creator: "eoseoseoseos",
-				collection_name: "jefftestcoll",
-				schema_name: "schema1",
+				collection_name: collectionName,
+				schema_name: schemaName,
 				schema_format: [
 					{
 						name: "name",
@@ -94,29 +88,19 @@ export const createSchema = async () => {
 	});
 };
 
-export const getAssets = async () => {
-	const rpc = new RpcApi("https://jungle4.cryptolions.io:443", "atomicassets");
-	const result = await rpc.getAccountAssets("eoseoseoseos");
-};
-
-export const createCollection = async () => {
+export const createCollection = async (collectionName: string) => {
 	const { transact, authorization, actor } = useSession();
 
 	await transact({
 		action: {
 			account: "atomicassets",
 			name: "createcol",
-			authorization: [
-				{
-					actor: "eoseoseoseos",
-					permission: "active",
-				},
-			],
+			authorization,
 			data: {
-				author: "eoseoseoseos",
-				collection_name: "jefftestcoll",
+				author: actor,
+				collection_name: collectionName,
 				allow_notify: false,
-				authorized_accounts: ["eoseoseoseos"],
+				authorized_accounts: [actor],
 				notify_accounts: [],
 				market_fee: 0,
 				data: [],
