@@ -14,7 +14,8 @@
     "@wharfkit/wallet-plugin-privatekey": "^1.1.0",
     "atomicassets": "^1.5.1",
     "elysia": "latest",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "pino": "^9.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.4",
