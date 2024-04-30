@@ -1,14 +1,17 @@
 import { type Elysia, t } from "elysia";
-import { findKeyOrThrow } from "../services/keys";
+import { findUnredeemedKey, redeemKey } from "../services/keys";
 import { getAssetsForAccount, mintNft } from "../services/atomic";
-import db from "../db";
 
 export const authController = (app: Elysia) =>
 	app.post(
 		"/grant-access",
 		async ({ body: { key, username } }): Promise<boolean> => {
 			//step 1. Find the key / check validity.
-			await findKeyOrThrow(key);
+			const foundKey = await findUnredeemedKey(key);
+
+			if (!foundKey) {
+				throw new Error("Key not found or already redeemed");
+			}
 
 			// get schema and collection name from env
 			const {
@@ -46,16 +49,7 @@ export const authController = (app: Elysia) =>
 			});
 
 			//increment redeem count
-			await db.keys.update({
-				where: {
-					key,
-				},
-				data: {
-					redeemed: {
-						increment: 1,
-					},
-				},
-			});
+			await redeemKey(key, username);
 
 			return true;
 		},

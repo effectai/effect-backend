@@ -2,6 +2,8 @@
   "name": "effect-backend",
   "version": "1.0.50",
   "scripts": {
+    "start-prod": "bunx prisma migrate deploy && bun src/index.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts"
   },

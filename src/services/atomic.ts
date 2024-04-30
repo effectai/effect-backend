@@ -1,7 +1,7 @@
-import { RpcApi } from "atomicassets";
 import { useSession } from "../session";
 import type { NameType } from "@wharfkit/session";
 import { client } from "../client";
+import { logger } from "../logger";
 
 export interface IAssetRow {
 	asset_id: string;
@@ -13,12 +13,6 @@ export interface IAssetRow {
 	immutable_serialized_data: Uint8Array;
 	mutable_serialized_data: Uint8Array;
 }
-
-export const getTemplates = async (collectionName: string) => {
-	const rpc = new RpcApi("https://jungle4.cryptolions.io:443", "atomicassets");
-	const data = await rpc.getCollectionTemplates(collectionName);
-	return data;
-};
 
 export const getAssetsForAccount = async (
 	accountName: string,
@@ -79,6 +73,7 @@ export const createTemplate = async (
 export const createSchema = async (
 	collectionName: string,
 	schemaName: string,
+	authorizedCreator: string,
 ) => {
 	const { transact, authorization } = useSession();
 
@@ -88,7 +83,7 @@ export const createSchema = async (
 			name: "createschema",
 			authorization,
 			data: {
-				authorized_creator: "eoseoseoseos",
+				authorized_creator: authorizedCreator,
 				collection_name: collectionName,
 				schema_name: schemaName,
 				schema_format: [
@@ -141,7 +136,7 @@ export const mintNft = async ({
 	mintTo,
 }: MintNftArgs) => {
 	try {
-		console.log("mintNft", collectionName, schemaName, templateId, mintTo);
+		logger.info("minting nft", collectionName, schemaName, templateId, mintTo);
 
 		const { transact, authorization, actor } = useSession();
 
