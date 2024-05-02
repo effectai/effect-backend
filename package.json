@@ -1,28 +1,32 @@
 {
-  "name": "effect-backend",
-  "version": "1.0.50",
-  "scripts": {
-    "start-prod": "bunx prisma migrate deploy && bun src/index.ts",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
-  },
-  "dependencies": {
-    "@elysiajs/cors": "^1.0.2",
-    "@elysiajs/swagger": "^1.0.3",
-    "@prisma/client": "5.12.1",
-    "@wharfkit/session": "^1.2.8",
-    "@wharfkit/transact-plugin-autocorrect": "^1.1.1",
-    "@wharfkit/wallet-plugin-privatekey": "^1.1.0",
-    "atomicassets": "^1.5.1",
-    "elysia": "latest",
-    "node-fetch": "^3.3.2",
-    "pino": "^9.0.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.6.4",
-    "bun-types": "latest",
-    "prisma": "^5.12.1"
-  },
-  "module": "src/index.js"
+	"name": "effect-backend",
+	"version": "1.0.50",
+	"scripts": {
+		"start-prod": "bunx prisma migrate deploy && bun src/index.ts",
+		"build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "bun run --watch src/index.ts",
+		"prisma:seed": "bun prisma db seed"
+	},
+	"dependencies": {
+		"@elysiajs/cors": "^1.0.2",
+		"@elysiajs/swagger": "^1.0.3",
+		"@prisma/client": "5.12.1",
+		"@wharfkit/session": "^1.2.8",
+		"@wharfkit/transact-plugin-autocorrect": "^1.1.1",
+		"@wharfkit/wallet-plugin-privatekey": "^1.1.0",
+		"atomicassets": "^1.5.1",
+		"elysia": "latest",
+		"node-fetch": "^3.3.2",
+		"pino": "^9.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.6.4",
+		"bun-types": "latest",
+		"prisma": "^5.12.1"
+	},
+	"prisma": {
+		"seed": "bun prisma/seed.ts"
+	},
+	"module": "src/index.js"
 }

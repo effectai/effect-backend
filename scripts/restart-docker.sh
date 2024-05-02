@@ -11,8 +11,8 @@ if docker-compose down && docker-compose up -d db; then
   print "Starting all containers..."
   docker-compose up -d --build
   print "Running migrations..."
-  docker-compose run backend bun prisma generate
-  #print "Running seeds..."
-  #docker-compose run --rm backend npm run knex:seed:run
+  docker-compose run backend bun prisma migrate dev
+  print "Running seed..."
+  docker-compose run --rm backend bun run prisma:seed
   print "Done!"
 fi
