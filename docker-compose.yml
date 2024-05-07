@@ -1,5 +1,4 @@
 version: '3.5'
-
 services:
   db:
     image: postgres:15.3-alpine
@@ -13,14 +12,10 @@ services:
     # - ./pgdata:/var/lib/postgresql/data
     ports:
       - '5432:5432'
-    networks:
-      - efx-backend-network
 
   admin:
     image: adminer
     restart: always
-    networks:
-      - efx-backend-network
     depends_on:
       - db
     ports:
@@ -39,10 +34,4 @@ services:
       - '8888:8888'
     depends_on:
       - db
-    networks:
-      - efx-backend-network
 
-networks:
-  efx-backend-network:
-    external: true
-    driver: bridge
