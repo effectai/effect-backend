@@ -1,19 +1,18 @@
 import { type Elysia, t } from "elysia";
-import { findUnredeemedKey, redeemKey } from "../services/keys";
 import { getAssetsForAccount, mintNft } from "../services/atomic";
+import { findUnredeemedKey, redeemKey } from "../services/keys";
 
 export const authController = (app: Elysia) =>
 	app.post(
 		"/grant-access",
 		async ({ body: { key, username } }): Promise<boolean> => {
-			//step 1. Find the key / check validity.
+
 			const foundKey = await findUnredeemedKey(key);
 
 			if (!foundKey) {
 				throw new Error("Key not found or already redeemed");
 			}
 
-			// get schema and collection name from env
 			const {
 				ATOMIC_ASSETS_SCHEMA_NAME,
 				ATOMIC_ASSETS_COLLECTION_NAME,
@@ -40,7 +39,6 @@ export const authController = (app: Elysia) =>
 				throw new Error("User already has access");
 			}
 
-			//step 2. mint NFT to the user
 			await mintNft({
 				collectionName: ATOMIC_ASSETS_COLLECTION_NAME,
 				schemaName: ATOMIC_ASSETS_SCHEMA_NAME,
@@ -48,7 +46,6 @@ export const authController = (app: Elysia) =>
 				mintTo: username,
 			});
 
-			//increment redeem count
 			await redeemKey(key, username);
 
 			return true;

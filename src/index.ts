@@ -1,7 +1,7 @@
+import cors from "@elysiajs/cors";
+import { swagger } from "@elysiajs/swagger";
 import { Elysia } from "elysia";
 import { authController } from "./controllers/auth";
-import { swagger } from "@elysiajs/swagger";
-import cors from "@elysiajs/cors";
 import { logger } from "./logger";
 
 const app = new Elysia()

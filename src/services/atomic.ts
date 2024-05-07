@@ -1,7 +1,7 @@
-import { useSession } from "../session";
 import type { NameType } from "@wharfkit/session";
 import { client } from "../client";
 import { logger } from "../logger";
+import { useSession } from "../session";
 
 export interface IAssetRow {
 	asset_id: string;
