@@ -1,15 +1,14 @@
 # Elysia with Bun runtime
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
-```bash
-bun create elysia ./elysia-example
-```
-
 ## Development
-To start the development server run:
+Copy the example environment configuration:
 ```bash
-bun run dev
+cp .env-example .env
 ```
 
-Open http://localhost:3000/ with your browser to see the result.
+To start the development environment run:
+```bash
+docker-compose up -d
+```
+
+Open http://localhost:8888/ with your browser to test the API server is running
