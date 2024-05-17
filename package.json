@@ -11,7 +11,7 @@
 	"dependencies": {
 		"@elysiajs/cors": "^1.0.2",
 		"@elysiajs/swagger": "^1.0.3",
-		"prisma": "^5.12.1"
+		"prisma": "^5.12.1",
 		"@prisma/client": "5.12.1",
 		"@wharfkit/session": "^1.2.8",
 		"@wharfkit/transact-plugin-autocorrect": "^1.1.1",
