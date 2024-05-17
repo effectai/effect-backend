@@ -14,7 +14,7 @@ COPY ./tsconfig.json .
 
 ENV NODE_ENV production
 
-RUN bun prisma generate
+RUN bunx prisma generate
 
 CMD ["bun", "start-prod"]
 
