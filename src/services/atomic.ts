@@ -31,7 +31,7 @@ export const authorizeCreator = async (
 	collectionName: string,
 	creatorName: string,
 ) => {
-	const { transact, authorization, actor } = useSession();
+	const { transact, authorization } = useSession();
 
 	await transact({
 		action: {

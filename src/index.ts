@@ -3,6 +3,7 @@ import { swagger } from "@elysiajs/swagger";
 import { Elysia } from "elysia";
 import { authController } from "./controllers/auth";
 import { logger } from "./logger";
+import { generalController } from "./controllers/general";
 
 const app = new Elysia()
 	.onError(({ request, error, body }) => {
@@ -11,6 +12,7 @@ const app = new Elysia()
 	.use(swagger())
 	.use(cors())
 	.use(authController)
+	.use(generalController)
 	.listen(8888);
 
 console.log(

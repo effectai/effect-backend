@@ -15,7 +15,7 @@ export const useSession = () => {
 	const privateKey = process.env.EOS_PRIVATE_KEY;
 	const actor = process.env.EOS_ACTOR;
 	const permission = process.env.EOS_PERMISSION;
-	const chainName =  process.env.EOS_CHAIN_NAME;
+	const chainName = process.env.EOS_CHAIN_NAME;
 
 	if (!privateKey) {
 		throw new Error("PRIVATE_KEY is not set, please set it in the .env file.");
@@ -30,6 +30,7 @@ export const useSession = () => {
 	}
 
 	const chain = chainName === "eos_mainnet" ? eos_mainnet : jungle4;
+
 	if (!chainName || !chain) {
 		throw new Error("CHAIN_NAME is not set, please set it in the .env file.");
 	}

@@ -1,12 +1,15 @@
 import { type Elysia, t } from "elysia";
-import { getAssetsForAccount, mintNft } from "../services/atomic";
+import {
+	authorizeCreator,
+	getAssetsForAccount,
+	mintNft,
+} from "../services/atomic";
 import { findUnredeemedKey, redeemKey } from "../services/keys";
 
 export const authController = (app: Elysia) =>
 	app.post(
 		"/grant-access",
 		async ({ body: { key, username } }): Promise<boolean> => {
-
 			const foundKey = await findUnredeemedKey(key);
 
 			if (!foundKey) {
