@@ -3,22 +3,12 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const keys = ["test-1234", "test-5678"];
-
-const createKeys = async () => {
-	try {
-		await prisma.keys.create({
-			data: {
-				key: keys[0],
-			},
-		});
-	} catch (e) {
-		console.error(e);
-	}
-};
+const seed = async () => {
+	console.log("Seeding database...");
+}
 
 try {
-	await createKeys();
+	await seed();
 } catch (error) {
 	console.error(error);
 	await prisma.$disconnect();

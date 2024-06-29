@@ -22,7 +22,7 @@ services:
       - 8080:8080
 
   backend:
-    image: oven/bun:latest
+    image: imbios/bun-node:latest
     working_dir: /code
     command: bun dev
     volumes:
