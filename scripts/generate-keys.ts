@@ -1,7 +1,9 @@
-// seed some access keys for development
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+	// postgres db connection string
+	datasourceUrl: ''
+});
 
 const generateRandomKeys = (amount: number, length: number) => {
 
@@ -25,6 +27,7 @@ const createKeys = async () => {
 
 		console.log("Generating keys...");
 
+		// generates 10 random keys with length 8
 		const keys = generateRandomKeys(10, 8);
 
 		await prisma.keys.createMany({
