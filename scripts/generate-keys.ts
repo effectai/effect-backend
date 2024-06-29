@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient({
 	// postgres db connection string
-	datasourceUrl: ''
+	datasourceUrl: process.env.DATABASE_URL
 });
 
 const generateRandomKeys = (amount: number, length: number) => {
