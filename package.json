@@ -17,12 +17,12 @@
 		"atomicassets": "^1.5.1",
 		"elysia": "latest",
 		"node-fetch": "^3.3.2",
-		"pino": "^9.0.0"
+		"pino": "^9.0.0",
+		"prisma": "^5.12.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.6.4",
-		"bun-types": "latest",
-		"prisma": "^5.12.1"
+		"bun-types": "latest"
 	},
 	"prisma": {
 		"seed": "bun prisma/seed.ts"
