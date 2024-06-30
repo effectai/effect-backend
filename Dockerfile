@@ -9,8 +9,8 @@ COPY bun.lockb .
 RUN bun install --production
 
 COPY ./src src
-COPY ./prisma prisma
 COPY ./tsconfig.json .
+COPY ./prisma prisma
 
 ENV NODE_ENV production
 
