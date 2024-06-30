@@ -1,6 +1,5 @@
 import { type Elysia, t } from "elysia";
 import {
-	authorizeCreator,
 	getAssetsForAccount,
 	mintNft,
 } from "../services/atomic";
