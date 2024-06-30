@@ -1,4 +1,4 @@
-FROM oven/bun:latest
+FROM imbios/bun-node:latest
 
 # Create app directory
 WORKDIR /app
@@ -14,8 +14,6 @@ COPY ./tsconfig.json .
 
 ENV NODE_ENV production
 
-RUN bunx prisma generate
-
-CMD ["bun", "start-prod"]
+CMD ["bun", "run", "start:prod"]
 
 EXPOSE 3000
